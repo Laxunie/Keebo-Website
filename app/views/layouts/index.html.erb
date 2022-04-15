@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Layouts</h1>
+
+<div id="layouts">
+  <% @layouts.each do |layout| %>
+    <%= render layout %>
+    <p>
+      <%= link_to "Show this layout", layout %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New layout", new_layout_path %>

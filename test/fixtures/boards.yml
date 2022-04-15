@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  kit: MyString
+  switches: MyString
+  stabilizers: MyString
+  keycaps: MyString
+  price: 1
+  layout: MyString
+  layout: one
+
+two:
+  kit: MyString
+  switches: MyString
+  stabilizers: MyString
+  keycaps: MyString
+  price: 1
+  layout: MyString
+  layout: two

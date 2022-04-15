@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+
+<%@boards.each do |board|%>
+      <%=board.kit%>
+    <%end%>
+<div>
+  <%= link_to "Edit this layout", edit_layout_path(@layout) %> |
+  <%= link_to "Back to layouts", layouts_path %>
+
+  <%= button_to "Destroy this layout", @layout, method: :delete %>
+</div>
