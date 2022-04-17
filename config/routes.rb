@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'shared/navbar'
   root 'boards#index'
   resources :boards
   resources :layouts

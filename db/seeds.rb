@@ -34,7 +34,7 @@ image = ["calculator1", "tkl1", "601", "602", "tkl2", "401", "603", "651", "alic
 
 while j < board_layout.length() do
     layout = Layout.where(name: "#{board_layout[j]}").first
-    layout.boards.create(kit: kit[j], switches: switches[j], stabilizers: stabilizers[j], keycaps: keycaps[j], price: price[j], image_path: "./Images/#{image[j]}")
+    layout.boards.create(kit: kit[j], switches: switches[j], stabilizers: stabilizers[j], keycaps: keycaps[j], price: price[j], image_path: "keyboards/#{image[j]}.jpg")
     j += 1
 end
 puts "Created #{Layout.count} Layouts"

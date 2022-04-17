@@ -1,27 +1,12 @@
-<div id="<%= dom_id board %>">
-  <p>
-    <strong>Kit:</strong>
-    <%= board.kit %>
-  </p>
 
-  <p>
-    <strong>Switches:</strong>
-    <%= board.switches %>
-  </p>
-
-  <p>
-    <strong>Stabilizers:</strong>
-    <%= board.stabilizers %>
-  </p>
-
-  <p>
-    <strong>Keycaps:</strong>
-    <%= board.keycaps %>
-  </p>
-
-  <p>
-    <strong>Price:</strong>
-    <%= board.price %>
-  </p>
-
+<div class="boards-display" id="<%= dom_id board %>">
+  <%if board.image.present?%>
+    <%=image_tag board.image, height:500%>
+  <%else%>
+    <%=image_tag board.image_path, height:500%>
+  <%end%>
+</div>
+<div class="boards-display-info">
+  <h1><b><%=board.kit%></b> | <%=board.keycaps%></h1>
+  <p>$<%=board.price%></p>
 </div>

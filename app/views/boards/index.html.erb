@@ -1,14 +1,38 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Boards</h1>
-
-<div id="boards">
-  <% @boards.each do |board| %>
-    <%= render board %>
-    <p>
-      <%= link_to "Show this board", board %>
-    </p>
-  <% end %>
+<header class="header">
+  <div class="container h-100">
+      <div class="row h-100 align-items-center">
+          <div class="header-items text-center text-light">
+              <h1 class="fw-bolder">Shop Keebo Now!</h1>
+              <a href="#" class="btn text-uppercase fw-bold shadow mt-2 pt-2 pb-2 text-decoration-none">Shop</a>
+          </div>
+      </div>
+  </div>
+</header>
+<div class="banner">
+  <div class="p-5">
+    <div class="lubing-picture-1">
+      <%=image_tag("lubing1.jpg", width: 400)%>
+      <div class="lubing-picture-2">
+        <%=image_tag("lubing2.jpg", width: 300)%>
+      </div>
+    </div>
+  </div>
+  <div class="row align-items-center">
+    <div class="text-end">
+      <h1>Switch lubing services coming soon!</h1>
+    </div>
+  </div>
 </div>
-
-<%= link_to "New board", new_board_path %>
+<div class="boards-container">
+  <div class="boards">
+    <div class="sort">
+      <h1><%=link_to "All", boards_path()%></h1>
+      <h1><%=link_to "New", boards_path(sort: "new")%></h1>
+    </div>
+    <% @boards.each do |board| %>
+      <a href="/boards/<%=board.id%>">
+        <%= render board %>
+      </a>
+    <% end %>
+  </div>
+</div>
