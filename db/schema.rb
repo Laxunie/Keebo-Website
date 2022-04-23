@@ -10,7 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_17_050921) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_22_232725) do
+  create_table "accounts", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.integer "failed_attempts", default: 0, null: false
+    t.string "unlock_token"
+    t.datetime "locked_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "province_id", null: false
+    t.string "address"
+    t.string "postalcode"
+    t.index ["confirmation_token"], name: "index_accounts_on_confirmation_token", unique: true
+    t.index ["email"], name: "index_accounts_on_email", unique: true
+    t.index ["province_id"], name: "index_accounts_on_province_id"
+    t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
+    t.index ["unlock_token"], name: "index_accounts_on_unlock_token", unique: true
+  end
+
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -84,7 +114,37 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_17_050921) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "order_products", force: :cascade do |t|
+    t.integer "board_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["board_id"], name: "index_order_products_on_board_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.float "subtotal"
+    t.float "tax"
+    t.float "total"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_orders_on_account_id"
+  end
+
+  create_table "provinces", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.float "PST"
+    t.float "GST"
+    t.float "HST"
+  end
+
+  add_foreign_key "accounts", "provinces"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "boards", "layouts"
+  add_foreign_key "order_products", "boards"
+  add_foreign_key "orders", "accounts"
 end

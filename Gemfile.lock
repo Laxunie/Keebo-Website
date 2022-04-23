@@ -152,6 +152,10 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
+    launchy (2.5.0)
+      addressable (~> 2.7)
+    letter_opener (1.8.1)
+      launchy (>= 2.2, < 3)
     loofah (2.16.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -258,6 +262,7 @@ GEM
     sqlite3 (1.4.2)
     stimulus-rails (1.0.4)
       railties (>= 6.0.0)
+    stripe (5.52.0)
     strscan (3.0.1)
     thor (1.2.1)
     tilt (2.0.10)
@@ -302,6 +307,8 @@ DEPENDENCIES
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
+  kaminari
+  letter_opener
   puma (~> 5.0)
   rails (~> 7.0.2, >= 7.0.2.3)
   sassc-rails
@@ -309,6 +316,7 @@ DEPENDENCIES
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails
+  stripe
   turbo-rails
   tzinfo-data
   web-console

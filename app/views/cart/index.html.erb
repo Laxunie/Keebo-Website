@@ -1,0 +1,51 @@
+<div class="d-flex flex-wrap justify-content-center" id="shoe-list">
+    <div class="col-12 col-lg-6 mt-3 p-2">
+        <% if !session[:shopping_cart].any? %>
+            <h3 class="fw-bold">You have no items in your cart.</h3>
+        <% else %>
+            <div>
+            </div>
+            <div class="border bg-white shadow-sm">
+                <% cart.each do |board| %>
+                    <div class="card bg-light shadow-sm p-2 m-3">
+                        <div class="d-flex">
+                            <div class="col-4 d-none d-sm-block">
+                                <% if board.image.present? %>
+                                    <a href="<%= board_path(board) %>"><%= image_tag board.image, class: "img-fluid", alt: board.kit  %></a>
+                                <% else %>
+                                    <a href="<%= board_path(board) %>"><%= image_tag board.image_path, class: "img-fluid", alt: board.kit %></a>
+                                <% end %>
+                            </div>
+                            <div class="col-8 col-sm-6 p-1 px-3">
+                                <h5><a class="card-title fw-bold text-decoration-none" href="<%= board_path(board) %>"><%= board.kit%></a></h5>
+                                <h5 class="price card-text fw-bold mt-2"><%= number_to_currency(board.price) %></h5>
+                            </div>
+                            <%= form_with url: cart_update_path, method: :post do %>
+                                <%=hidden_field_tag :id, board.id%>
+                                <%=number_field_tag :quantity, session[:quantity][session[:shopping_cart].index(board.id)], onchange: "this.form.submit();"%>
+                            <%end%>     
+                            
+                            <%=button_to cart_path(board), method: :delete do%>
+                                Remove from cart
+                            <%end%>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+            <div class="order_information">
+                <p><%=current_account.province.name%></p>
+                <p><%=current_account.address%></p>
+                <p><%=session[:subtotal]%>
+                <p>Tax: <%=(current_account.province.PST + current_account.province.GST + current_account.province.HST) / 100%>
+                <p>Total: <%=(session[:subtotal] * (1 + (current_account.province.PST + current_account.province.GST + current_account.province.HST) / 100)).round(2)%></p>
+            </div>
+            <%= form_with url: cart_checkout_path, method: :get do %>
+                <%=hidden_field_tag :account, current_account%>
+                <%=hidden_field_tag :account, current_account%>
+                <%=hidden_field_tag :account, current_account%>
+                <%=hidden_field_tag :account, current_account%>
+                <%=hidden_field_tag :account, current_account%>
+            <%end%>  
+        <% end %>
+    </div>
+</div>

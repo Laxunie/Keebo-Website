@@ -10,3 +10,16 @@
   <h1><b><%=board.kit%></b> | <%=board.keycaps%></h1>
   <p>$<%=board.price%></p>
 </div>
+<%if account_signed_in?%>
+  <%if cart.include?(board)%>
+    <%=button_to cart_path(board), method: :delete do%>
+      Remove from cart
+    <%end%>
+  <%else%>
+  <%= form_with url: cart_index_path, method: :post do %>
+      <%= hidden_field_tag(:id, board.id) %>
+      <%= hidden_field_tag(:quantity, 1)%>
+      <%= button_tag 'Add to Cart', class: 'button is-dark mt-2' %>
+      <% end %>
+  <% end %>
+<%end%>
