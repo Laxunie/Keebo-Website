@@ -13,10 +13,6 @@ class BoardsController < InheritedResources::Base
     if(params[:sort] == "new")
       @boards = Board.where("created_at > ?", 3.days.ago)
     end
-
-    session[:visit_count] ||= 0
-    session[:visit_count] += 1
-    @visit_count = session[:visit_count]
   end
 
 end

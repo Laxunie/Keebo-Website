@@ -39,12 +39,12 @@
                 <p>Tax: <%=(current_account.province.PST + current_account.province.GST + current_account.province.HST) / 100%>
                 <p>Total: <%=(session[:subtotal] * (1 + (current_account.province.PST + current_account.province.GST + current_account.province.HST) / 100)).round(2)%></p>
             </div>
-            <%= form_with url: cart_checkout_path, method: :get do %>
-                <%=hidden_field_tag :account, current_account%>
-                <%=hidden_field_tag :account, current_account%>
-                <%=hidden_field_tag :account, current_account%>
-                <%=hidden_field_tag :account, current_account%>
-                <%=hidden_field_tag :account, current_account%>
+            <%= form_with url: cart_checkout_path, method: :get do |form|%>
+                <%=form.hidden_field :account, :value => current_account.id%>
+                <%=form.hidden_field :subtotal, :value => session[:subtotal]%>
+                <%=form.hidden_field :tax, :value => (current_account.province.PST + current_account.province.GST + current_account.province.HST) / 100%>
+                <%=form.hidden_field :total, :value => (session[:subtotal] * (1 + (current_account.province.PST + current_account.province.GST + current_account.province.HST) / 100)).round(2)%>
+                <%=form.submit "Order"%>
             <%end%>  
         <% end %>
     </div>

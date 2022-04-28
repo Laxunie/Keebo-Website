@@ -1,2 +1,8 @@
-<h1>Cart#create</h1>
-<p>Find me in app/views/cart/create.html.erb</p>
+<div class="invoice">
+    <h1>Order Completed</h1>
+    <h2>Bought <%=session[:shopping_cart].count%> Board(s)</h2>
+    <h2>Subtotal: <%=params[:subtotal]%></h2>
+    <h2>Tax: <%=params[:tax]%></h2>
+    <h2>Total: <%=params[:total]%></h2>
+    <h1>Thanks for shopping with us!</h1>
+</div>

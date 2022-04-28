@@ -1,4 +1,4 @@
 class Province < ApplicationRecord
     has_many :accounts
-    validates :name, presence: true
+    validates :name, :tax, presence: true
 end

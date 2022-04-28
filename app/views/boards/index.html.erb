@@ -3,7 +3,8 @@
       <div class="row h-100 align-items-center">
           <div class="header-items text-center text-light">
               <h1 class="fw-bolder">Shop Keebo Now!</h1>
-              <a href="/boards/#sell" class="btn text-uppercase fw-bold shadow mt-2 pt-2 pb-2 text-decoration-none">Shop</a>
+              <a href="/boards/#sell" 
+                class="btn text-uppercase fw-bold shadow mt-2 pt-2 pb-2 text-decoration-none">Shop</a>
           </div>
       </div>
   </div>
@@ -11,9 +12,9 @@
 <div class="banner" id="banner">
   <div class="p-5">
     <div class="lubing-picture-1">
-      <%=image_tag("lubing1.jpg", width: 400)%>
+      <%=image_tag("lubing1.jpg", alt: "lubing1", width: 400)%>
       <div class="lubing-picture-2">
-        <%=image_tag("lubing2.jpg", width: 300)%>
+        <%=image_tag("lubing2.jpg", alt: "lubing2", width: 300)%>
       </div>
     </div>
   </div>
@@ -29,7 +30,6 @@
     <div class="sort">
       <h1><%=link_to "All", "/boards/#sell"%></h1>
       <h1><%=link_to "New", "/boards?sort=new/#sell"%></h1>
-      <p>You visited <%=pluralize @visit_count, 'time'%></p>
       <%=form_tag(boards_path, method: :get) do%>
         <%=select_tag "layout", options_for_select(@layouts.map{|layout| [layout.name, layout.id]}.insert(0,"All"))%>
         <%=text_field_tag(:search, params[:search])%>

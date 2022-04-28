@@ -38,10 +38,32 @@ class CartController < ApplicationController
       session[:subtotal] += (indBoard.price * session[:quantity][session[:shopping_cart].index(indBoard.id)])
     end
 
+    puts session[:quantity]
+
     redirect_back(fallback_location: root_path)
   end
 
   def show
+    
+    account = params[:account]
+    subtotal = params[:subtotal]
+    tax = params[:tax]
+    total = params[:total]
+
+    order = Order.new
+    order.account_id = account
+    order.subtotal = subtotal
+    order.tax = tax
+    order.total = total
+    order.save
+
+    cart.each do |board|
+      order_product = OrderProduct.new
+      order_product.order_id = order.id
+      order_product.board_id = board.id
+      order_product.quantity = session[:quantity][session[:shopping_cart].index(board.id)]
+      order_product.save
+    end
   end
 end
 

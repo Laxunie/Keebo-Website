@@ -16,6 +16,11 @@
           <li class="navbar-item">
             <a class="navbar-link text-decoration-none fs-6" href="/A">Board</a>
           </li>
+          <%if account_signed_in?%>
+            <li class="navbar-item">
+              <a class="navbar-link text-decoration-none fs-6" href="/accounts/index?id=<%=current_account.id%>">Orders</a>
+            </li>
+          <%end%>
         </ul>
       </div>
     </div>

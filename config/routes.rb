@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'about/index'
+  get 'accounts/show'
+  get 'accounts/index'
   get 'cart/create'
   get 'cart/destroy'
   root to: 'boards#index'

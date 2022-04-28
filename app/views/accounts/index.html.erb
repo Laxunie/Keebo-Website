@@ -1,0 +1,8 @@
+<h1>Orders</h1>
+    <%if @orders.count <= 1%>
+            <h1>No Orders to Show</h1>
+    <%else%>
+        <%@orders.each do |order|%>
+            <%=link_to "Order Number #{order.id}", accounts_show_path(:order_id => order.id)%>
+        <%end%>
+    <%end%>

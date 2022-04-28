@@ -1,0 +1,20 @@
+<div class="order_products">
+    <%if @order.count <= 1%>
+        <h1>No Orders to Show</h1>
+    <%else%>
+        <%@order.each do |product|%>
+            <div class="product">
+                <%if product.board.image.present?%>
+                    <%=image_tag product.board.image, height:500%>
+                <%else%>
+                    <%=image_tag product.board.image_path, height:500%>
+                <%end%>
+                <%=product.board.kit%>
+                <h2>$<%=product.board.price%></h2>
+            </div>
+        <%end%>
+        <h2>Subtotal: $<%=@info[0].subtotal%></h2>
+        <h2>Tax: $<%=@info[0].tax * @info[0].subtotal%></h2>
+        <h2>Total: $<%=@info[0].total%></h2>
+    <%end%>
+</div>

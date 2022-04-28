@@ -1,9 +1,9 @@
 
 <div class="boards-display" id="<%= dom_id board %>">
   <%if board.image.present?%>
-    <%=image_tag board.image, height:500%>
+    <%=image_tag board.image, alt: board.kit,  height:500%>
   <%else%>
-    <%=image_tag board.image_path, height:500%>
+    <%=image_tag board.image_path, alt: board.kit, height:500%>
   <%end%>
 </div>
 <div class="boards-display-info">
@@ -16,10 +16,10 @@
       Remove from cart
     <%end%>
   <%else%>
-  <%= form_with url: cart_index_path, method: :post do %>
+    <%= form_with url: cart_index_path, method: :post do %>
       <%= hidden_field_tag(:id, board.id) %>
       <%= hidden_field_tag(:quantity, 1)%>
       <%= button_tag 'Add to Cart', class: 'button is-dark mt-2' %>
-      <% end %>
+    <% end %>
   <% end %>
 <%end%>

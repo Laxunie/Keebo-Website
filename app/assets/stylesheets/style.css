@@ -145,3 +145,15 @@
 #quantity{
     width: 100px;
 }
+
+.order_products{
+    margin-top: 50px;
+}
+
+.product{
+    display: flex;
+}
+
+.invoice{
+    margin-top: 50px;
+}
